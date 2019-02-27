@@ -54,7 +54,7 @@ Function QueryGitLabAPI {
         Write-Verbose "URL: $($Request.URI)"
         $webContent = Invoke-WebRequest @Request
         $totalPages = if ($webContent.Headers.ContainsKey('X-Total-Pages')) {
-            (($webContent).Headers['X-Total-Pages']).tostring() -as [int]
+            [int](($webContent).Headers['X-Total-Pages'])
         } else { 0 }
 
         if ($webContent.rawcontentlength -eq 0 ) { break; }
